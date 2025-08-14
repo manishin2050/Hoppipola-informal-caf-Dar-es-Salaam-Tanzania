@@ -310,21 +310,27 @@ contactForm.addEventListener('submit', function() {
     }, 3000);
 });
 
-// Improve mobile navigation
 let lastScrollTop = 0;
-window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (currentScroll > lastScrollTop && currentScroll > 100) {
-        // Scrolling down
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Scrolling up
-        navbar.style.transform = 'translateY(0)';
-    }
-    
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-}, false);
+let scrollTimeout;
+
+window.addEventListener('scroll', function () {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop + 5 && currentScroll > 1000) {
+            // scrolling down
+            navbar.style.transform = 'translateY(-100%)';
+        } else if (currentScroll < lastScrollTop - 100) {
+            // scrolling up
+            navbar.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, 10); // adjust delay to taste
+});
+
+
 
 // Add counter animation for stats (if needed)
 function animateCounter(element, target, duration = 2000) {
