@@ -114,7 +114,7 @@ Please confirm my booking. Thank you!`;
     
     // Open WhatsApp with the message
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappURL = `https://wa.me/255123456789?text=${encodedMessage}`;
+    const whatsappURL = `https://wa.me/917665035700?text=${encodedMessage}`;
     
     // Show success message
     showNotification('Redirecting to WhatsApp for booking confirmation...', 'success');
